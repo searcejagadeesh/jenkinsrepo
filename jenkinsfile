@@ -1,0 +1,26 @@
+pipeline {
+    agent any     // if u r using master slave arch then u can use particular label here eg. Prod, QA. 
+    
+     stages {
+     stage('version'){
+        steps {
+            
+                sh 'gcloud --version'
+            }
+            }
+       
+      stage('cloudfuntion deploy'){
+          steps{
+             script {
+                     withCredentials([file(credentialsId: 'cloudfuntiondeploy', variable: 'GC_KEY')]) {
+                            sh("gcloud auth activate-service-account --key-file=${GC_KEY}")
+                            sh("gcloud functions deploy helloHttp --runtime nodejs14 --trigger-http --memory 512MB --allow-unauthenticated")
+                        }//credent
+
+                  }//script
+            }//steps
+        }//stage
+    }
+
+
+}
