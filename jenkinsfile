@@ -2,6 +2,11 @@ pipeline {
     agent any     // if u r using master slave arch then u can use particular label here eg. Prod, QA. 
     
      stages {
+     stage('clone') {
+            steps {
+                git url: 'https://github.com/Sachinm17/DevOpsClassCodes.git'
+            }
+        }
      stage('version'){
         steps {
             
