@@ -9,7 +9,7 @@ pipeline {
         }
         stage('clone') {
             steps {
-                git url: 'https://github.com/searcejagadeesh/hello.git'
+                git url: 'https://github.com/searcejagadeesh/javahellowrld.git'
             }
         }
      stage('version'){
